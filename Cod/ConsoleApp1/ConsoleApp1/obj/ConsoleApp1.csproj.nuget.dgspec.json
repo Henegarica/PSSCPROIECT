@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Program Files\\PSSCProiect\\Cod\\ConsoleApp1\\ConsoleApp1\\ConsoleApp1.csproj": {}
+    "C:\\Users\\ABC\\Documents\\FACULTATE-AN 4\\PSSC\\Proiect\\Cod\\ConsoleApp1\\ConsoleApp1\\ConsoleApp1.csproj": {}
   },
   "projects": {
-    "D:\\Program Files\\PSSCProiect\\Cod\\ConsoleApp1\\ConsoleApp1\\ConsoleApp1.csproj": {
+    "C:\\Users\\ABC\\Documents\\FACULTATE-AN 4\\PSSC\\Proiect\\Cod\\ConsoleApp1\\ConsoleApp1\\ConsoleApp1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Program Files\\PSSCProiect\\Cod\\ConsoleApp1\\ConsoleApp1\\ConsoleApp1.csproj",
+        "projectUniqueName": "C:\\Users\\ABC\\Documents\\FACULTATE-AN 4\\PSSC\\Proiect\\Cod\\ConsoleApp1\\ConsoleApp1\\ConsoleApp1.csproj",
         "projectName": "ConsoleApp1",
-        "projectPath": "D:\\Program Files\\PSSCProiect\\Cod\\ConsoleApp1\\ConsoleApp1\\ConsoleApp1.csproj",
-        "packagesPath": "C:\\Users\\heneg\\.nuget\\packages\\",
-        "outputPath": "D:\\Program Files\\PSSCProiect\\Cod\\ConsoleApp1\\ConsoleApp1\\obj\\",
+        "projectPath": "C:\\Users\\ABC\\Documents\\FACULTATE-AN 4\\PSSC\\Proiect\\Cod\\ConsoleApp1\\ConsoleApp1\\ConsoleApp1.csproj",
+        "packagesPath": "C:\\Users\\ABC\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ABC\\Documents\\FACULTATE-AN 4\\PSSC\\Proiect\\Cod\\ConsoleApp1\\ConsoleApp1\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\heneg\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ABC\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -39,33 +39,17 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "dependencies": {
-            "CSharp.Choices": {
-              "target": "Package",
-              "version": "[2.1.1, )"
-            },
-            "LanguageExt.Core": {
-              "target": "Package",
-              "version": "[4.4.0, )"
-            }
-          },
           "imports": [
             "net461",
             "net462",
             "net47",
             "net471",
             "net472",
-            "net48",
-            "net481"
+            "net48"
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "frameworkReferences": {
-            "Microsoft.NETCore.App": {
-              "privateAssets": "all"
-            }
-          },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     }
