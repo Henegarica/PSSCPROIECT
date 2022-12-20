@@ -8,5 +8,6 @@ namespace ConsoleApp1.Data
 {
     internal class Test
     {
+        private int salut;
     }
 }
