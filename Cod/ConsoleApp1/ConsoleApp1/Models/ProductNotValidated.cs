@@ -4,10 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApp1.Data
+namespace ConsoleApp1.Models
 {
-    internal class Test
-    {
-        private int salut;
-    }
+    public record ProductNotValidated(string product, string address, string price);
 }
