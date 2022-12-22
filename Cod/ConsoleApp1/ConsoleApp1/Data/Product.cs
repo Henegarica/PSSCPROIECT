@@ -27,3 +27,14 @@ public record Order
     public static Option<Order> Create(int id, Product[] products) =>
         Some(new Order(id, products));
 }
+
+public record Process
+{
+    private Process(int id, Address[] addresses)
+    {
+
+    }
+
+    public static Option<Process> Create(int id, Address[] addresses) =>
+        Some(new Process(id, addresses));
+}

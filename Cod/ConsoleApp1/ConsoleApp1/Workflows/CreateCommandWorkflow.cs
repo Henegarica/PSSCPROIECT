@@ -40,18 +40,18 @@ public class CreateCommandWorkflow
             Left: error => new CreateCommandResult.CreateCommandFailed(error));
     }
 
-    public Either<string, Product[]> LoadProducts()
+    public static Either<string, Product[]> LoadProducts()
     {
         return Right<string, Product[]>(Array.Empty<Product>());
     }
 
-    public Either<string, Unit> ValidateCommand(CreateCommand cmd)
+    public static Either<string, Unit> ValidateCommand(CreateCommand cmd)
     {
         //presupunem ca avem o comanda valida
         return Right<string, Unit>(unit);
     }
 
-    public Either<string, Unit> SaveOrder(Order order)
+    public static Either<string, Unit> SaveOrder(Order order)
     {
         return Right<string, Unit>(unit);
     }
