@@ -1,7 +1,9 @@
-﻿using System;
+﻿using ConsoleApp1.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace ConsoleApp1.Data
@@ -38,7 +40,7 @@ namespace ConsoleApp1.Data
             }
             else
             {
-                throw new LocalitateNevalidaExceptie("");
+                throw new TownException("");
             }
 
 
@@ -48,7 +50,7 @@ namespace ConsoleApp1.Data
             }
             else
             {
-                throw new JudetNevalidExceptie("");
+                throw new CountyException("");
             }
 
 
@@ -58,18 +60,18 @@ namespace ConsoleApp1.Data
             }
             else
             {
-                throw new StradaNevalidaExceptie("");
+                throw new StreetException("");
             }
 
 
 
-            if (CodPostalValid.IsMatch(zipcode))
+            if (CharacterValid.IsMatch(zipcode))
             {
                 ZipCode = zipcode;
             }
             else
             {
-                throw new CodPostalNevalidExceptie("");
+                throw new PostalCodeException("");
             }
         }
 

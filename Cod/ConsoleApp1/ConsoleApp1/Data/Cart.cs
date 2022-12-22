@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ConsoleApp1.Models;
+using CSharp.Choices;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,48 +17,48 @@ namespace ConsoleApp1.Data
 
         public record CosNevalidat : ICart
         {
-            public CosNevalidat(IReadOnlyCollection<ProdusAlesNevalidat> listProducts)
+            public IReadOnlyCollection<ProductNotValidated> ListProducts { get; }
+            public CosNevalidat(IReadOnlyCollection<ProductNotValidated> listProducts)
             {
                 ListProducts = listProducts;
             }
-
-            public IReadOnlyCollection<ProdusAlesNevalidat> ListProducts { get; }
         }
 
         public record CosInvalidat : ICart
         {
-            internal CosInvalidat(IReadOnlyCollection<ProdusAlesNevalidat> listProducts, string motiv)
+            public IReadOnlyCollection<ProductNotValidated> ListProducts { get; }
+            public string Motiv { get; }
+            internal CosInvalidat(IReadOnlyCollection<ProductNotValidated> listProducts, string motiv)
             {
                 ListProducts = listProducts;
                 Motiv = motiv;
             }
-
-            public IReadOnlyCollection<ProdusAlesNevalidat> ListProducts { get; }
-            public string Motiv { get; }
         }
 
 
         public record CosValidat : ICart
         {
-            internal CosValidat(IReadOnlyCollection<ProdusAlesValidat> listProducts)
+            public IReadOnlyCollection<ProductValidated> ListProducts { get; }
+
+            internal CosValidat(IReadOnlyCollection<ProductValidated> listProducts)
             {
                 ListProducts = listProducts;
             }
 
-            public IReadOnlyCollection<ProdusAlesValidat> ListProducts { get; }
         }
 
         public record CosPlatit : ICart
         {
-            internal CosPlatit(IReadOnlyCollection<ProdusAlesValidat> listProducts, string csv, DateTime dataPlata)
+            public IReadOnlyCollection<ProductValidated> ListProducts { get; }
+            public DateTime DataPlata { get; }
+            public string Csv { get; }
+
+            internal CosPlatit(IReadOnlyCollection<ProductValidated> listProducts, string csv, DateTime dataPlata)
             {
                 ListProducts = listProducts;
                 DataPlata = dataPlata;
                 Csv = csv;
             }
-            public IReadOnlyCollection<ProdusAlesValidat> ListProducts { get; }
-            public DateTime DataPlata { get; }
-            public string Csv { get; }
         }
     }
 }
