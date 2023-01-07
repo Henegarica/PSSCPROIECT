@@ -20,6 +20,10 @@ public record Product(int Id, Quantity Quantity, uint Price, uint Stock);
 
 public record Order
 {
+    public Order()
+    {
+    }
+
     private Order(int id, Product[] products)
     {
     }

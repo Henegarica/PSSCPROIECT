@@ -2,64 +2,70 @@
 using CSharp.Choices;
 using static LanguageExt.Prelude;
 using LanguageExt;
-using Array = System.Array;
-using LanguageExt.ClassInstances;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static ConsoleApp1.CreateCommandResult;
 
 namespace ConsoleApp1.Workflows
 {
-    public record CartCommand();
+    public enum DeliveryMethod
+    {
+        Card, Cash
+    }
+    public record ShipCommand(int OrderId, DeliveryMethod DeliveryMethod);
 
     [AsChoice]
-    public static partial class CartCommandResult
+    public static partial class ShipCommandResult
     {
-        public interface ICartCommandResult
+        public interface IShipCommandResult
         {
         }
-        public record CartAccepted(Order Order) : ICartCommandResult;
 
-        public record CartFailed(string Reason) : ICartCommandResult;
-    }
+        public record CommandShipped(Order Order) : IShipCommandResult;
 
-    public class CartCommandWorkflow
-    {
-        public CartCommandWorkflow()
+        public record ShipCommandFailed(string Reason) : IShipCommandResult;
+        public class ShipCommandWorkflow
         {
+            public async Task<ShipCommandResult.IShipCommandResult> ExecuteAsync(ShipCommand cmd)
+            {
+                Either<string, Order> expr = from order in LoadOrder(cmd.OrderId)
+                                             from deliveryCost in CalculateDeliveryCost(cmd.DeliveryMethod)
+                                             from confirmShipment in ConfirmShipment(order, deliveryCost)
+                                             from ship in Ship(order, cmd.DeliveryMethod)
+                                             from updateStatus in UpdateStatus(order)
+                                             select order;
 
-        }
+                return expr.Match(
+                    Right: order => (ShipCommandResult.IShipCommandResult)new ShipCommandResult.CommandShipped(order),
+                    Left: error => new ShipCommandResult.ShipCommandFailed(error));
+            }
 
-        public async Task<CartCommandResult.ICartCommandResult> ExecuteAsync(CartCommand cmd)
-        {
-            Either<string, Order> expr = from products in LoadProducts()
-                                         from isValid in ValidateCommand(cmd)
-                                         from order in Order.Create(123, products).ToEither("Cannot create a valid Order")
-                                         from saveOrder in SaveOrder(order)
-                                         select order;
+            public static Either<string, Order> LoadOrder(int orderId)
+            {
+                // încărcarea comenzii cu ID-ul specificat din baza de date
+                return Right<string, Order>(new Order());
+            }
 
-            return expr.Match(
-                Right: order => (CartCommandResult.ICartCommandResult)new CartCommandResult.CartAccepted(order),
-                Left: error => new CartCommandResult.CartFailed(error));
-        }
+            public static Either<string, decimal> CalculateDeliveryCost(DeliveryMethod deliveryMethod)
+            {
+                // calculează costurile de livrare pentru metoda de livrare specificată
+                return Right<string, decimal>(10m);
+            }
 
-        public static Either<string, Product[]> LoadProducts()
-        {
-            return Right<string, Product[]>(Array.Empty<Product>());
-        }
+            public static Either<string, Unit> ConfirmShipment(Order order, decimal deliveryCost)
+            {
+                // contactează clientul pentru a le confirma detaliile livrării, inclusiv costurile de livrare
+                return Right<string, Unit>(unit);
+            }
 
-        public static Either<string, Unit> ValidateCommand(CartCommand cmd)
-        {
-            //presupunem ca avem o comanda valida
-            return Right<string, Unit>(unit);
-        }
-
-        public static Either<string, Unit> SaveOrder(Order order)
-        {
-            return Right<string, Unit>(unit);
+            public static Either<string, Unit> Ship(Order order, DeliveryMethod deliveryMethod)
+            {
+                // preia comanda de către curier sau trimite prin poștă, în funcție de metoda de livrare aleasă
+                return Right<string, Unit>(unit);
+            }
+            public static Either<string, Unit> UpdateStatus(Order order)
+            {
+                // actualizează starea comenzii pentru a reflecta faptul că a fost livrată
+                //order.Status = OrderStatus.Shipped;
+                return Right<string, Unit>(unit);
+            }
         }
     }
 }
