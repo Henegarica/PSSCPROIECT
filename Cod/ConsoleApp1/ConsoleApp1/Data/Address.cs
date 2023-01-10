@@ -21,7 +21,7 @@ namespace ConsoleApp1.Data
         public string ZipCode { get; }
 
 
-        private Address(string name, string lastname, string town, string street, string county, string zipcode)
+        public Address(string name, string lastname, string town, string street, string county, string zipcode)
         {
 
             if (CharacterValid.IsMatch(name))
